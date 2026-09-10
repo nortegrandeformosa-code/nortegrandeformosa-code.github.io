@@ -2,10 +2,14 @@ window.NEXAH = {
   slogan: "La radio está siempre en movimiento",
   city: "Formosa",
   tz: "America/Argentina/Buenos_Aires",
-  stream: "https://ibizasonica.streaming-pro.com:8000/ibizasonica",
-  streamFallback: "http://ibizasonica.streaming-pro.com:8000/ibizasonica",
-  streamShare: "https://appweb.ibizasonica.com/s/6jAvfsR4nS94kYy3LhyEZ4",
-  streamName: "NEXAH · Ibiza Sonica",
+  stream: "https://ice4.somafm.com/fluid-128-mp3",
+  streamFallback: "https://ice2.somafm.com/fluid-128-mp3",
+  streams: [
+    "https://ice4.somafm.com/fluid-128-mp3",
+    "https://ice2.somafm.com/fluid-128-mp3",
+    "https://ice6.somafm.com/beatblender-128-mp3"
+  ],
+  streamName: "NEXAH 01",
   pisadores: [
     "NEXAH Radio. Formosa.",
     "La radio está siempre en movimiento.",
