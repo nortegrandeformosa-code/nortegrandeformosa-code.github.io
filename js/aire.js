@@ -16,10 +16,23 @@
       if (!hit) return;
       const img = document.getElementById("nowArt");
       if (img) img.src = hit.artworkUrl100.replace("100x100", "1000x1000");
-      const line = hit.trackName + " — " + hit.artistName;
-      E.setText("nowTrack", line);
+      E.setText("nowTrack", hit.trackName + " — " + hit.artistName);
       E.setText("pTitle", hit.trackName);
     } catch (e) {}
+  }
+  const cams = [
+    "https://assets.mixkit.co/videos/52189/52189-720.mp4",
+    "https://assets.mixkit.co/videos/52188/52188-720.mp4"
+  ];
+  let cam = 0;
+  const bed = document.getElementById("bgStudio");
+  if (bed) {
+    bed.play().catch(() => {});
+    setInterval(() => {
+      cam = (cam + 1) % cams.length;
+      bed.src = cams[cam];
+      bed.play().catch(() => {});
+    }, 22000);
   }
   cover();
   setInterval(cover, 52000);
