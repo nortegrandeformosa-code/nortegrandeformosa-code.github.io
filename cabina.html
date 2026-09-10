@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXAH Cabina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/cabina.css" />
+</head>
+<body>
+  <audio id="stream" preload="none" crossorigin="anonymous"></audio>
+  <header class="top">
+    <a class="brand" href="index.html"><span class="nx">NX</span><span><b>NEXAH</b><small>CABINA</small></span></a>
+    <nav class="mono"><a href="index.html">Aire público</a><a href="cabina.html">Operación</a></nav>
+    <div class="clockbox"><div id="clock">—</div><small class="mono">Formosa / Arg</small></div>
+  </header>
+  <div class="room">
+    <section class="glass">
+      <video id="studioCam" autoplay muted loop playsinline src="https://assets.mixkit.co/videos/52189/52189-720.mp4"></video>
+      <div class="glass-frame"></div>
+      <div class="stamp"><b class="mono" id="airState">EN ESPERA</b><span class="mono">CAM 01 · ESTUDIO A · VIDRIERA</span></div>
+      <div class="glass-meta mono"><div id="showName">Sonido NEXAH</div><div><span id="showHost">—</span> · <span id="showRange">—</span></div></div>
+    </section>
+    <section class="console">
+      <aside class="ch"><p class="k mono">Canales de piso</p><div id="agents"></div></aside>
+      <div class="master">
+        <p class="k mono">Master · Mesa 01</p>
+        <h1>Operación</h1>
+        <p class="lead" style="margin-top:10px">Monitoreo PGM en vivo.</p>
+        <div class="mon"><div class="mon-top mono"><span>PGM</span><span id="lvlDb">— dB</span><span id="peakDb">— PK</span><i id="clipLed" class="clip"></i></div>
+        <canvas id="vuMaster" width="640" height="88"></canvas>
+        <canvas id="vuScope" width="640" height="48"></canvas></div>
+        <div class="vu-row" id="faders"></div>
+        <div class="ops">
+          <button class="air" data-play data-play-label type="button">Poner al aire</button>
+          <button class="chip" data-drop="NEXAH Radio. Formosa." type="button">Pisador ID</button>
+          <button class="chip" data-drop="La radio está siempre en movimiento." type="button">Slogan</button>
+        </div>
+        <p class="k mono" style="margin-top:22px">Bitácora</p>
+        <div class="log mono" id="log"></div>
+      </div>
+      <aside class="side"><p class="k mono">Cola al aire</p><div id="queue"></div><p class="k mono" style="margin-top:22px">Inventario</p><div id="inv"></div></aside>
+    </section>
+  </div>
+  <div class="dock">
+    <button class="dplay" data-play data-play-label type="button">▶</button>
+    <div><em class="mono">NEXAH 01</em><strong>Mesa de operación</strong><span id="dropLine"></span></div>
+    <canvas id="vu" width="280" height="26"></canvas>
+    <input class="vol" id="vol" type="range" min="0" max="1" step="0.01" value="0.85" />
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/cabina.js"></script>
+</body>
+</html>
