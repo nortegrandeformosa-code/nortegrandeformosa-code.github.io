@@ -60,10 +60,16 @@
   }
 
   function duck(on) {
-    if (!engine.gain) return;
     engine.ducked = on;
-    engine.gain.gain.cancelScheduledValues(engine.ctx.currentTime);
-    engine.gain.gain.linearRampToValueAtTime(on ? 0.18 : 1, engine.ctx.currentTime + 0.18);
+    const audio = $("stream");
+    const knob = $("vol");
+    const vol = knob ? Number(knob.value) : 0.9;
+    if (engine.gain && engine.ctx) {
+      engine.gain.gain.cancelScheduledValues(engine.ctx.currentTime);
+      engine.gain.gain.linearRampToValueAtTime(on ? 0.16 : 1, engine.ctx.currentTime + 0.16);
+    } else if (audio) {
+      audio.volume = on ? Math.max(0.08, vol * 0.16) : vol;
+    }
   }
 
   function clipSrc(key) {
@@ -83,13 +89,6 @@
     if (key && files[key]) return files[key];
     const keys = Object.keys(pack).filter((k) => k.indexOf("PIS_OFF") === 0);
     return pack[keys[Math.floor(Math.random() * keys.length)]] || files["PIS_OFF_002.mp3"];
-  }
-
-  function nextBedSrc() {
-    const keys = D.bedKeys || ["MUSICA_NEXA.mp3", "NEXA_RADIO.mp3", "FULL_CORTO.mp3"];
-    const key = keys[engine.bedIndex % keys.length];
-    engine.bedIndex += 1;
-    return clipSrc(key);
   }
 
   function playClip(src) {
@@ -119,9 +118,9 @@
     const labels = {
       "PIS_OFF_001.mp3": "La radio está siempre en movimiento.",
       "PIS_OFF_002.mp3": "Estás escuchando Nexa Radio.",
-      "PIS_OFF_003.mp3": "Una señal diferente.",
-      "PIS_OFF_004.mp3": "Desde Formosa para cualquier lugar.",
-      "PIS_OFF_005.mp3": "Staff de agentes inteligentes.",
+      "PIS_OFF_003.mp3": "Una señal diferente. Una nueva forma de hacer radio.",
+      "PIS_OFF_004.mp3": "Desde Formosa para cualquier lugar donde estés.",
+      "PIS_OFF_005.mp3": "La primer señal dirigida por un staff de agentes inteligentes.",
       "MUSICA_NEXA.mp3": "Nexa Radio. Música para oídos inteligentes.",
       "NEXA_RADIO.mp3": "Nexa Radio.",
       "FULL_CORTO.mp3": "NEXAH. Señal completa."
@@ -149,37 +148,33 @@
   async function play() {
     const audio = $("stream");
     if (!audio) return;
-    bootAudio();
+    try { bootAudio(); } catch (e) { engine.ctx = null; }
     if (engine.ctx && engine.ctx.state === "suspended") await engine.ctx.resume();
-    engine.bedIndex = engine.bedIndex || 0;
     audio.loop = false;
-    audio.onended = () => {
-      if (!engine.playing) return;
-      audio.src = nextBedSrc();
-      audio.play().catch(() => {});
-    };
-    audio.src = nextBedSrc();
-    try {
-      await audio.play();
-      engine.playing = true;
-      document.body.classList.add("is-live");
-      document.querySelectorAll("[data-play-label]").forEach((b) => { b.textContent = "PAUSA"; });
-      setText("airState", "EN AIRE");
-      scheduleDrops();
-      if (Date.now() - engine.lastPisa > 4000) setTimeout(() => firePisador("slogan"), 1400);
-    } catch (err) {
-      audio.src = D.streamFallback;
+    audio.onended = null;
+    audio.crossOrigin = "anonymous";
+    const sources = [D.stream, D.streamFallback];
+    let ok = false;
+    for (let i = 0; i < sources.length; i += 1) {
+      audio.src = sources[i];
       try {
         await audio.play();
-        engine.playing = true;
-        document.body.classList.add("is-live");
-        setText("airState", "EN AIRE");
-        scheduleDrops();
-      } catch (e2) {
-        setText("airState", "SEÑAL CAÍDA");
-        engine.playing = false;
-      }
+        ok = true;
+        break;
+      } catch (err) {}
     }
+    if (!ok) {
+      setText("airState", "SEÑAL CAÍDA");
+      engine.playing = false;
+      return;
+    }
+    engine.playing = true;
+    document.body.classList.add("is-live");
+    document.querySelectorAll("[data-play-label]").forEach((b) => { b.textContent = "PAUSA"; });
+    setText("airState", "EN AIRE");
+    setText("pTitle", D.streamName || "NEXAH · Ibiza Sonica");
+    scheduleDrops();
+    if (Date.now() - engine.lastPisa > 4000) setTimeout(() => firePisador("slogan"), 8000);
   }
 
   function pause() {
@@ -251,8 +246,8 @@
       engine.peakAt = Date.now();
     }
     const peakDb = engine.peak > 0.0001 ? 20 * Math.log10(engine.peak) : -60;
-    setText("lvlDb", (db > -60 ? db.toFixed(1) : "-\u221e") + " dB");
-    setText("peakDb", (peakDb > -60 ? peakDb.toFixed(1) : "-\u221e") + " PK");
+    setText("lvlDb", (db > -60 ? db.toFixed(1) : "-∞") + " dB");
+    setText("peakDb", (peakDb > -60 ? peakDb.toFixed(1) : "-∞") + " PK");
     const clip = document.getElementById("clipLed");
     if (clip) clip.classList.toggle("on", peak > 0.92);
     const vu = $("vu");

@@ -13,11 +13,12 @@
 <body>
   <audio id="stream" preload="none" crossorigin="anonymous"></audio>
   <div class="livebed" aria-hidden="true">
-    <video id="bgStudio" autoplay muted loop playsinline poster="https://assets.mixkit.co/videos/52189/52189-720.mp4">
+    <video id="bgStudio" autoplay muted loop playsinline poster="media/studio/poster-estudio.jpg">
       <source src="https://assets.mixkit.co/videos/52189/52189-720.mp4" type="video/mp4" />
     </video>
     <div class="livewash"></div>
   </div>
+
   <header class="top">
     <a class="brand" href="index.html">
       <span class="nx">NX</span>
@@ -35,6 +36,7 @@
       <small class="mono">Formosa / Arg</small>
     </div>
   </header>
+
   <div class="shell" id="senal">
     <div class="gutter"></div>
     <section class="hero">
@@ -53,7 +55,7 @@
       <div class="screen">
         <img id="nowArt" alt="" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80" />
         <span class="pill mono">Nexah Video · Señal viva</span>
-        <p id="nowTrack">NEXAH · Night Session</p>
+        <p id="nowTrack">NEXAH · Ibiza Sonica</p>
       </div>
       <p class="mono" style="margin:10px 0 18px;font-size:10px">Video de fondo silenciado · la música va por la radio</p>
       <div class="mono" style="font-size:11px">Ahora suena</div>
@@ -61,6 +63,7 @@
       <p class="sub mono" id="showName">Nexah · Night Session</p>
     </aside>
   </div>
+
   <section class="sec" id="visual">
     <p class="k mono">01 / La señal</p>
     <h3>Una radio para escuchar. Y también <em>para mirar.</em></h3>
@@ -82,12 +85,14 @@
       </article>
     </div>
   </section>
+
   <section class="sec">
     <p class="k mono">Curaduría NEXAH</p>
     <h3>No es una playlist.<br><em>Es un recorrido.</em></h3>
     <div class="cols" id="shows"></div>
   </section>
-  <section class="sec banco" id="banco">
+
+    <section class="sec banco" id="banco">
     <p class="k mono">Acompaña esta señal</p>
     <a class="banco-brand" href="https://www.bancoformosa.com.ar/" target="_blank" rel="noopener">
       <img src="https://www.bancoformosa.com.ar/assets/images/layout/logo.svg" alt="Banco Formosa" width="280" height="58" />
@@ -97,22 +102,25 @@
     <p><a href="https://www.bancoformosa.com.ar/Fondos-Comunes-de-Inversion-731.note.aspx" target="_blank" rel="noopener">Fondos comunes de inversión</a></p>
     <p><a href="https://www.bancoformosa.com.ar/Banco-Formosa-te-premia-con-Todo-suma-791.note.aspx" target="_blank" rel="noopener">Todo Suma</a></p>
   </section>
+
   <section class="sec" id="nexah">
     <p class="k mono">02 / NEXAH</p>
     <h3>Música. Cultura. <em>Tecnología.</em></h3>
     <p class="lead">La tecnología organiza la continuidad; el criterio define la música, la identidad y los límites editoriales. Una radio nacida en Formosa.</p>
     <p><a href="cabina.html">Entrar a cabina →</a></p>
   </section>
+
   <div class="dock">
     <button class="dplay" data-play data-play-label type="button">▶</button>
     <div>
       <em class="mono" id="airState">Señal en espera</em>
-      <strong id="pTitle">NEXAH · Night Session</strong>
+      <strong id="pTitle">NEXAH · Ibiza Sonica</strong>
       <span id="dropLine"></span>
     </div>
     <canvas id="vu" width="280" height="26"></canvas>
     <input class="vol" id="vol" type="range" min="0" max="1" step="0.01" value="0.9" />
   </div>
+
   <script src="js/data.js"></script>
   <script src="js/pisadores.js"></script>
   <script src="js/engine.js"></script>
