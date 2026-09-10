@@ -12,55 +12,26 @@
 </head>
 <body>
   <audio id="stream" preload="none" crossorigin="anonymous"></audio>
-
   <header class="top">
-    <a class="brand" href="index.html">
-      <span class="nx">NX</span>
-      <span><b>NEXAH</b><small>CABINA</small></span>
-    </a>
-    <nav class="mono">
-      <a href="index.html">Aire público</a>
-      <a href="cabina.html">Operación</a>
-    </nav>
-    <div class="clockbox">
-      <div id="clock">—</div>
-      <small class="mono">Formosa / Arg</small>
-    </div>
+    <a class="brand" href="index.html"><span class="nx">NX</span><span><b>NEXAH</b><small>CABINA</small></span></a>
+    <nav class="mono"><a href="index.html">Aire público</a><a href="cabina.html">Operación</a></nav>
+    <div class="clockbox"><div id="clock">—</div><small class="mono">Formosa / Arg</small></div>
   </header>
-
   <div class="room">
     <section class="glass">
-      <video id="studioCam" autoplay muted loop playsinline
-        poster="media/studio/poster-estudio.jpg"
-        src="https://assets.mixkit.co/videos/52189/52189-720.mp4"></video>
+      <video id="studioCam" autoplay muted loop playsinline poster="media/studio/poster-estudio.jpg" src="https://assets.mixkit.co/videos/52189/52189-720.mp4"></video>
       <div class="glass-frame"></div>
-      <div class="stamp">
-        <b class="mono" id="airState">EN ESPERA</b>
-        <span class="mono">CAM 02 · DETRÁS DEL LOCUTOR · ESTUDIO A</span>
-      </div>
-      <div class="glass-meta mono">
-        <div id="showName">Sonido NEXAH</div>
-        <div><span id="showHost">—</span> · <span id="showRange">—</span></div>
-      </div>
+      <div class="stamp"><b class="mono" id="airState">EN ESPERA</b><span class="mono">CAM 02 · DETRÁS DEL LOCUTOR · ESTUDIO A</span></div>
+      <div class="glass-meta mono"><div id="showName">Sonido NEXAH</div><div><span id="showHost">—</span> · <span id="showRange">—</span></div></div>
     </section>
-
     <section class="console">
-      <aside class="ch">
-        <p class="k mono">Canales de piso</p>
-        <div id="agents"></div>
-      </aside>
-
+      <aside class="ch"><p class="k mono">Canales de piso</p><div id="agents"></div></aside>
       <div class="master">
         <p class="k mono">Master · Mesa 01</p>
         <h1>Operación</h1>
-        <p class="lead" style="margin-top:10px">Monitoreo PGM en vivo. Lo que no valida Diego no sale.</p>
+        <p class="lead" style="margin-top:10px">Tres capas: PGM, VOZ, ID. Lo que no valida Diego no sale.</p>
         <div class="mon">
-          <div class="mon-top mono">
-            <span>PGM</span>
-            <span id="lvlDb">— dB</span>
-            <span id="peakDb">— PK</span>
-            <i id="clipLed" class="clip"></i>
-          </div>
+          <div class="mon-top mono"><span>PGM</span><span id="lvlDb">— dB</span><span id="peakDb">— PK</span><i id="clipLed" class="clip"></i></div>
           <canvas id="vuMaster" width="640" height="88"></canvas>
           <canvas id="vuScope" width="640" height="48"></canvas>
         </div>
@@ -77,29 +48,26 @@
         <p class="k mono" style="margin-top:22px">Bitácora</p>
         <div class="log mono" id="log"></div>
       </div>
-
-      <aside class="side">
-        <p class="k mono">Cola al aire</p>
-        <div id="queue"></div>
-        <p class="k mono" style="margin-top:22px">Inventario</p>
-        <div id="inv"></div>
-      </aside>
+      <aside class="side"><p class="k mono">Cola al aire</p><div id="queue"></div><p class="k mono" style="margin-top:22px">Inventario</p><div id="inv"></div></aside>
     </section>
   </div>
-
   <div class="dock">
     <button class="dplay" data-play data-play-label type="button">▶</button>
-    <div>
-      <em class="mono">NEXAH 01</em>
-      <strong>Mesa de operación</strong>
-      <span id="dropLine"></span>
-    </div>
+    <div><em class="mono">NEXAH 01</em><strong>Mesa de operación</strong><span id="dropLine"></span></div>
+    <div class="layers mono"><i data-layer="pgm">PGM</i><i data-layer="voz">VOZ</i><i data-layer="id">ID</i></div>
     <canvas id="vu" width="280" height="26"></canvas>
     <input class="vol" id="vol" type="range" min="0" max="1" step="0.01" value="0.85" />
   </div>
-
   <script src="js/data.js"></script>
   <script src="js/pisadores.js"></script>
+  <script src="js/pack/p01.js"></script>
+  <script src="js/pack/p02.js"></script>
+  <script src="js/pack/p03.js"></script>
+  <script src="js/pack/p04.js"></script>
+  <script src="js/pack/p05.js"></script>
+  <script src="js/pack/p06.js"></script>
+  <script src="js/pack/p07.js"></script>
+  <script src="js/pack/p08.js"></script>
   <script src="js/engine.js"></script>
   <script src="js/cabina.js"></script>
 </body>
