@@ -2,10 +2,22 @@ window.NEXAH = {
   slogan: "La radio está siempre en movimiento",
   city: "Formosa",
   tz: "America/Argentina/Buenos_Aires",
-  stream: "https://ice4.somafm.com/groovesalad-128-mp3",
-  streamFallback: "https://ice2.somafm.com/groovesalad-128-mp3",
+  stream: "media/pis/FULL_CORTO.mp3",
+  streamFallback: "https://ice4.somafm.com/fluid-128-mp3",
   streamName: "NEXAH 01",
-  pisadores: ["NEXAH Radio. Formosa.","La radio está siempre en movimiento.","Sonido NEXAH.","Estás en NEXAH. Señal continua.","Radar NEXAH. Formosa y el NEA."],
+  bed: [
+    "media/pis/MUSICA_NEXA.mp3",
+    "media/pis/NEXA_RADIO.mp3",
+    "media/pis/FULL_CORTO.mp3"
+  ],
+  bedKeys: ["MUSICA_NEXA.mp3", "NEXA_RADIO.mp3", "FULL_CORTO.mp3"],
+  pisadores: [
+    "NEXAH Radio. Formosa.",
+    "La radio está siempre en movimiento.",
+    "Sonido NEXAH.",
+    "Estás en NEXAH. Señal continua.",
+    "Radar NEXAH. Formosa y el NEA."
+  ],
   spots: [
     { title: "Banco Formosa", dur: "25s", line: "Banco Formosa. Cerca tuyo." },
     { title: "Nexus cobranza", dur: "20s", line: "Nexus. Cobranza que no para." },
@@ -37,5 +49,22 @@ window.NEXAH = {
     { name: "Mazclin", who: "Supervisor", job: "Calidad, frescura, sin repetición.", desk: "QA" },
     { name: "Nexus", who: "Recepción", job: "Llamadas, cobranzas, puente.", desk: "RX" }
   ],
-  tracks: ["Daft Punk Get Lucky","Soda Stereo Persiana Americana","Fito Paez 11 y 6","Charly Garcia Demoliendo hoteles","Nathy Peluso Business Woman","Wos Tierra de Juegos","Trueno Dance Crip","Bizarrap music session","Lemon Jelly Space Walk","Air Sexy Boy"]
+  tracks: [
+    "Daft Punk Get Lucky",
+    "Soda Stereo Persiana Americana",
+    "Fito Paez 11 y 6",
+    "Charly Garcia Demoliendo hoteles",
+    "Nathy Peluso Business Woman",
+    "Wos Tierra de Juegos",
+    "Trueno Dance Crip",
+    "Bizarrap music session",
+    "Lemon Jelly Space Walk",
+    "Air Sexy Boy"
+  ],
+  notes: [
+    { tag: "NOTAS", title: "Formosa arranca con cielo variable y 24°", lead: "Servicio y clima para el NEA, en el corte de apertura." },
+    { tag: "MÚSICA", title: "La rotación no se detiene", lead: "Pablo cruza nacional, electrónico y urbano sin huecos." },
+    { tag: "CIUDAD", title: "La señal sale desde Formosa", lead: "Una radio pensada para acompañar, no para invadir." },
+    { tag: "MARCAS", title: "Banco Formosa en el aire", lead: "Pauta institucional integrada a la programación." }
+  ]
 };

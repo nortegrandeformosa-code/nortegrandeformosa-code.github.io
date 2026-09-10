@@ -1,6 +1,7 @@
 (() => {
   const D = window.NEXAH;
   const E = window.NexahEngine;
+  const show = E.currentShow();
   const box = document.getElementById("shows");
   if (box) {
     box.innerHTML = D.dayparts.map((p) =>
@@ -16,13 +17,16 @@
       if (!hit) return;
       const img = document.getElementById("nowArt");
       if (img) img.src = hit.artworkUrl100.replace("100x100", "1000x1000");
-      E.setText("nowTrack", hit.trackName + " — " + hit.artistName);
+      const line = hit.trackName + " — " + hit.artistName;
+      E.setText("nowTrack", line);
       E.setText("pTitle", hit.trackName);
     } catch (e) {}
   }
   const cams = [
     "https://assets.mixkit.co/videos/52189/52189-720.mp4",
-    "https://assets.mixkit.co/videos/52188/52188-720.mp4"
+    "https://assets.mixkit.co/videos/2952/2952-720.mp4",
+    "https://assets.mixkit.co/videos/2948/2948-720.mp4",
+    "https://assets.mixkit.co/videos/2960/2960-720.mp4"
   ];
   let cam = 0;
   const bed = document.getElementById("bgStudio");
