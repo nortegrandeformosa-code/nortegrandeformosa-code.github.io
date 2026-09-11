@@ -1,27 +1,50 @@
 (() => {
   const D = window.NEXAH;
-  const E = window.NexahEngine;
-  const show = E.currentShow();
-  const box = document.getElementById("shows");
-  if (box) {
+  function lang() { return document.body.getAttribute("data-lang") === "en" ? "en" : "es"; }
+  function paintShows() {
+    const box = document.getElementById("shows");
+    if (!box || !D.dayparts) return;
+    const en = lang() === "en";
     box.innerHTML = D.dayparts.map((p) =>
-      "<article><small class=\"mono\">" + p.range + " · " + p.host + "</small><h4>" + p.title + "</h4><p>" + p.text + "</p></article>"
+      "<article><small class=\"mono\">" + p.range + " · " + p.host + "</small><h4>" +
+      (en && p.titleEn ? p.titleEn : p.title) + "</h4><p>" +
+      (en && p.textEn ? p.textEn : p.text) + "</p></article>"
     ).join("");
   }
-  async function cover() {
-    try {
-      const term = D.tracks[Math.floor(Math.random() * D.tracks.length)];
-      const u = "https://itunes.apple.com/search?term=" + encodeURIComponent(term) + "&entity=song&limit=1";
-      const j = await (await fetch(u)).json();
-      const hit = j.results && j.results[0];
-      if (!hit) return;
-      const img = document.getElementById("nowArt");
-      if (img) img.src = hit.artworkUrl100.replace("100x100", "1000x1000");
-      const line = hit.trackName + " — " + hit.artistName;
-      E.setText("nowTrack", line);
-      E.setText("pTitle", hit.trackName);
-    } catch (e) {}
+  function paintWire() {
+    const box = document.getElementById("wire");
+    if (!box) return;
+    const en = lang() === "en";
+    box.innerHTML = (D.notes || []).slice(0, 4).map((n) =>
+      "<article><small class=\"mono\">" + n.tag + "</small><h4>" +
+      (en && n.titleEn ? n.titleEn : n.title) + "</h4><p>" +
+      (en && n.leadEn ? n.leadEn : n.lead) + "</p></article>"
+    ).join("");
   }
+  function mountYouTube() {
+    const box = document.getElementById("ytBox");
+    if (!box) return;
+    const video = D.youtubeVideo || "BbXKzd7cZkI";
+    const channel = D.youtube || "https://www.youtube.com/@somosnexah";
+    box.innerHTML =
+      "<iframe title=\"NEXAH YouTube\" src=\"https://www.youtube-nocookie.com/embed/" + video +
+      "?rel=0&modestbranding=1&mute=1\" allow=\"accelerometer; clipboard-write; encrypted-media; picture-in-picture\" allowfullscreen></iframe>" +
+      "<a class=\"yt-link mono\" href=\"" + channel + "\" target=\"_blank\" rel=\"noopener\">@somosnexah →</a>";
+  }
+  function syncOnAir() {
+    const live = document.body.classList.contains("is-live");
+    const stamp = document.getElementById("onairState");
+    if (stamp) stamp.textContent = live ? "ON AIR" : "STANDBY";
+  }
+  new MutationObserver(syncOnAir).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  syncOnAir();
+  paintShows(); paintWire(); mountYouTube();
+  window.addEventListener("nexah-lang", () => { paintShows(); paintWire(); });
+  const vol = document.getElementById("vol");
+  if (vol) vol.addEventListener("input", () => {
+    const a = document.getElementById("stream");
+    if (a) a.volume = Number(vol.value);
+  });
   const cams = [
     "https://assets.mixkit.co/videos/52189/52189-720.mp4",
     "https://assets.mixkit.co/videos/2952/2952-720.mp4",
@@ -38,10 +61,4 @@
       bed.play().catch(() => {});
     }, 22000);
   }
-  cover();
-  setInterval(cover, 52000);
-  const vol = document.getElementById("vol");
-  if (vol) vol.addEventListener("input", () => {
-    document.getElementById("stream").volume = Number(vol.value);
-  });
 })();
