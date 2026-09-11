@@ -2,14 +2,16 @@ window.NEXAH = {
   slogan: "La radio está siempre en movimiento",
   city: "Formosa",
   tz: "America/Argentina/Buenos_Aires",
-  stream: "https://ice4.somafm.com/fluid-128-mp3",
-  streamFallback: "https://ice2.somafm.com/fluid-128-mp3",
+  stream: "https://ice4.somafm.com/indiepop-128-mp3",
+  streamFallback: "https://ice2.somafm.com/poptron-128-mp3",
   streams: [
-    "https://ice4.somafm.com/fluid-128-mp3",
-    "https://ice2.somafm.com/fluid-128-mp3",
-    "https://ice6.somafm.com/beatblender-128-mp3"
+    "https://ice4.somafm.com/indiepop-128-mp3",
+    "https://ice2.somafm.com/poptron-128-mp3",
+    "https://ice4.somafm.com/thetrip-128-mp3"
   ],
-  streamName: "NEXAH 01",
+  streamName: "NEXAH 01 · Alt / Rock / House",
+  pinchMinMs: 300000,
+  pinchMaxMs: 540000,
   pisadores: [
     "NEXAH Radio. Formosa.",
     "La radio está siempre en movimiento.",
@@ -30,10 +32,10 @@ window.NEXAH = {
   ],
   dayparts: [
     { from: 6, to: 10, range: "06–10", title: "Apertura NEXAH", host: "Vero", text: "Noticias Formosa y NEA, clima, servicio." },
-    { from: 10, to: 14, range: "10–14", title: "Sonido NEXAH", host: "Pablo", text: "Música, cultura y movimiento." },
-    { from: 14, to: 18, range: "14–18", title: "NEXAH Flow", host: "Pablo", text: "Hits, descubrimientos y energía." },
+    { from: 10, to: 14, range: "10–14", title: "Sonido NEXAH", host: "Pablo", text: "Alternativo, rock e indie." },
+    { from: 14, to: 18, range: "14–18", title: "NEXAH Flow", host: "Pablo", text: "House y cruce dance." },
     { from: 18, to: 21, range: "18–21", title: "Radar NEXAH", host: "Vero", text: "Actualidad, tecnología y tendencias." },
-    { from: 21, to: 24, range: "21–00", title: "NEXAH After", host: "Pablo", text: "Selección nocturna." },
+    { from: 21, to: 24, range: "21–00", title: "NEXAH After", host: "Pablo", text: "Selección nocturna alt / house." },
     { from: 0, to: 6, range: "00–06", title: "Señal nocturna", host: "Pablo", text: "La señal no corta." }
   ],
   agents: [
@@ -49,20 +51,20 @@ window.NEXAH = {
     { name: "Nexus", who: "Recepción", job: "Llamadas, cobranzas, puente.", desk: "RX" }
   ],
   tracks: [
-    "Daft Punk Get Lucky",
+    "The Strokes Last Nite",
+    "Arcade Fire Rebellion",
     "Soda Stereo Persiana Americana",
-    "Fito Paez 11 y 6",
     "Charly Garcia Demoliendo hoteles",
-    "Nathy Peluso Business Woman",
-    "Wos Tierra de Juegos",
-    "Trueno Dance Crip",
-    "Bizarrap music session",
-    "Lemon Jelly Space Walk",
-    "Air Sexy Boy"
+    "The Killers Mr Brightside",
+    "LCD Soundsystem Dance Yrself Clean",
+    "Daft Punk One More Time",
+    "Justice D.A.N.C.E.",
+    "Yeah Yeah Yeahs Maps",
+    "Phoenix 1901"
   ],
   notes: [
     { tag: "NOTAS", title: "Formosa arranca con cielo variable y 24°", lead: "Servicio y clima para el NEA, en el corte de apertura." },
-    { tag: "MÚSICA", title: "La rotación no se detiene", lead: "Pablo cruza nacional, electrónico y urbano sin huecos." },
+    { tag: "MÚSICA", title: "La rotación no se detiene", lead: "Pablo cruza alternativo, rock y house sin huecos." },
     { tag: "CIUDAD", title: "La señal sale desde Formosa", lead: "Una radio pensada para acompañar, no para invadir." },
     { tag: "MARCAS", title: "Banco Formosa en el aire", lead: "Pauta institucional integrada a la programación." }
   ]
