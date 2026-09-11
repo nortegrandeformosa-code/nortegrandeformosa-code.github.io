@@ -47,6 +47,11 @@
     const led = document.querySelector("[data-layer='" + name + "']");
     if (led) led.classList.toggle("on", !!on);
   }
+  function gapMs() {
+    const min = D.pinchMinMs || 5 * 60 * 1000;
+    const max = D.pinchMaxMs || 9 * 60 * 1000;
+    return min + Math.floor(Math.random() * (max - min + 1));
+  }
   function bootAudio() {
     const audio = $("stream");
     if (!audio || engine.ctx) return;
@@ -104,6 +109,14 @@
       }).catch(() => { clearTimeout(safety); finish(); });
     });
   }
+  function scheduleDrops(wait) {
+    clearTimeout(engine.timer);
+    engine.timer = setTimeout(() => {
+      if (!engine.playing) return;
+      if (engine.busy) { scheduleDrops(20000); return; }
+      firePisador(nextDropKind());
+    }, wait == null ? gapMs() : wait);
+  }
   async function firePisador(custom) {
     if (!engine.playing || engine.busy) return;
     const key = MAP[custom] || custom || "PIS_OFF_001.mp3";
@@ -113,7 +126,7 @@
     engine.dropN += 1;
     document.body.classList.add("on-drop");
     setText("dropLine", LABELS[key] || "NEXAH");
-    setLayer("id", key.indexOf("PIS") === -1);
+    setLayer("id", true);
     duck(true);
     await playClip(src);
     duck(false);
@@ -121,21 +134,11 @@
     document.body.classList.remove("on-drop");
     setText("dropLine", "");
     engine.busy = false;
+    if (engine.playing) scheduleDrops();
   }
   function nextDropKind() {
-    const n = engine.dropN;
-    if (n === 0) return "full";
-    if (n === 1) return "slogan";
-    const wheel = ["id", "formosa", "escena", "nexa", "staff", "slogan", "musica"];
-    return wheel[n % wheel.length];
-  }
-  function scheduleDrops() {
-    clearInterval(engine.timer);
-    engine.timer = setInterval(() => {
-      if (!engine.playing || engine.busy) return;
-      if (Date.now() - engine.lastPisa < 38000) return;
-      firePisador(nextDropKind());
-    }, 4000);
+    const wheel = ["id", "slogan", "formosa", "escena", "staff", "nexa", "musica"];
+    return wheel[engine.dropN % wheel.length];
   }
   async function connectBed() {
     const audio = $("stream");
@@ -163,9 +166,7 @@
     document.querySelectorAll("[data-play-label]").forEach((b) => { b.textContent = "PAUSA"; });
     setText("airState", "EN AIRE");
     setText("pTitle", D.streamName || "NEXAH 01");
-    scheduleDrops();
-    setTimeout(() => firePisador("full"), 900);
-    setTimeout(() => firePisador("slogan"), 11000);
+    setTimeout(() => firePisador("id"), 1600);
   }
   function pause() {
     const audio = $("stream");
@@ -173,6 +174,7 @@
     if (engine.voice) try { engine.voice.pause(); } catch (e) {}
     engine.playing = false;
     engine.busy = false;
+    clearTimeout(engine.timer);
     duck(false);
     document.body.classList.remove("is-live", "on-drop");
     setLayer("pgm", false); setLayer("voz", false); setLayer("id", false);
