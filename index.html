@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/air.css" />
 </head>
 <body>
   <audio id="stream" preload="none" crossorigin="anonymous"></audio>
@@ -19,12 +20,21 @@
   </div>
   <header class="top">
     <a class="brand" href="index.html"><span class="nx">NX</span><span><b>NEXAH</b><small>RADIO</small></span></a>
+    <div class="onair" id="onair" aria-live="polite">
+      <i></i>
+      <b>ON AIR</b>
+      <em class="mono" id="onairState">STANDBY</em>
+    </div>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="es" class="on">ES</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
     <nav class="mono">
-      <a href="#senal">Escuchar</a>
-      <a href="serie.html">Serie</a>
-      <a href="credencial.html">Credencial</a>
-      <a href="#partners">Partners</a>
-      <a href="cabina.html">Cabina</a>
+      <a href="#senal" data-i18n="nav.listen">Escuchar</a>
+      <a href="serie.html" data-i18n="nav.serie">Serie</a>
+      <a href="credencial.html" data-i18n="nav.pass">Credencial</a>
+      <a href="#partners" data-i18n="nav.partners">Partners</a>
+      <a href="cabina.html" data-i18n="nav.booth">Cabina</a>
     </nav>
     <div class="clockbox"><div id="clock">—</div><small class="mono">Formosa / Arg</small></div>
   </header>
@@ -32,24 +42,19 @@
     <div class="shell">
       <div class="gutter"></div>
       <section class="hero">
-        <div class="meta-row mono"><span>CAM 02 · Detrás del locutor · Estudio A</span><span>Formosa / Argentina</span></div>
+        <div class="meta-row mono"><span data-i18n="meta.cam">CAM 02 · Detrás del locutor · Estudio A</span><span>Formosa / Argentina</span></div>
         <h1>RADIO<br><span class="mag">PARA<br>MOVER</span><br>EL<br>AIRE.</h1>
-        <p class="lead">Cama continua: alternativa, rock y house. Los pinches entran encima, uno por ciclo de 5 a 9 minutos. La música no se corta.</p>
-        <button class="listen" data-play data-play-label type="button"><i>▶</i> ESCUCHAR AHORA</button>
-        <p class="note">El audio comienza cuando das play</p>
+        <p class="lead" data-i18n="hero.lead">Cama continua: alternativa, rock y house. Los pinches entran encima, uno por ciclo de 5 a 9 minutos. La música no se corta.</p>
+        <button class="listen" data-play data-play-label type="button"><i>▶</i> <span data-i18n="hero.play">ESCUCHAR AHORA</span></button>
+        <p class="note" data-i18n="hero.note">El audio comienza cuando das play</p>
       </section>
       <aside class="cyan">
-        <div class="cyan-top mono"><span>● Ready</span><span>Señal visual Nexah</span></div>
-        <hr />
-        <div class="screen">
-          <img id="nowArt" alt="" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80" />
-          <span class="pill mono">Nexah Video · Señal viva</span>
-          <p id="nowTrack">NEXAH · Alt / Rock / House</p>
+        <div class="cyan-top mono"><span>● LIVE CAM</span><span data-i18n="yt.kicker">Canal YouTube NEXAH</span></div>
+        <div class="yt-monitor" id="ytBox"></div>
+        <div class="wire">
+          <div class="wire-head mono"><span data-i18n="news.kicker">Noticias</span><span>2 × 2</span></div>
+          <div class="wiregrid" id="wire"></div>
         </div>
-        <p class="mono" style="margin:10px 0 18px;font-size:10px">PGM no para · VOZ espera 5–9 min</p>
-        <div class="mono" style="font-size:11px">Ahora suena</div>
-        <h2>MÚSICA<br>AL AIRE</h2>
-        <p class="sub mono" id="showName">Nexah · Night Session</p>
       </aside>
     </div>
     <aside class="adrail" id="partners">
@@ -72,19 +77,19 @@
     </aside>
   </div>
   <section class="sec" id="visual">
-    <p class="k mono">01 / La señal</p>
-    <h3>Una radio para escuchar. Y también <em>para mirar.</em></h3>
+    <p class="k mono">01 / <span data-i18n="s1.k">La señal</span></p>
+    <h3 data-i18n-html="s1.h">Una radio para escuchar. Y también <em>para mirar.</em></h3>
     <div class="cols">
-      <article><small class="mono">01 · PGM</small><h4>Cama alt / rock / house.</h4><p>Broadcast gratuito. El piso no se apaga.</p></article>
-      <article><small class="mono">02 · VOZ</small><h4>Pisadores sobre la música.</h4><p>Un pinchador. El siguiente espera 5 a 9 minutos.</p></article>
-      <article><small class="mono">03 · ID</small><h4>Serie P01–P08.</h4><p>Cortes reales. No se pisan entre sí.</p></article>
+      <article><small class="mono">01 · PGM</small><h4 data-i18n="s1.a">Cama alt / rock / house.</h4><p data-i18n="s1.ap">Broadcast gratuito. El piso no se apaga.</p></article>
+      <article><small class="mono">02 · VOZ</small><h4 data-i18n="s1.b">Pisadores sobre la música.</h4><p data-i18n="s1.bp">Un pinchador. El siguiente espera 5 a 9 minutos.</p></article>
+      <article><small class="mono">03 · ID</small><h4 data-i18n="s1.c">Serie P01–P08.</h4><p data-i18n="s1.cp">Cortes reales. No se pisan entre sí.</p></article>
     </div>
   </section>
-  <section class="sec"><p class="k mono">Curaduría NEXAH</p><h3>No es una playlist.<br><em>Es un recorrido.</em></h3><div class="cols" id="shows"></div></section>
+  <section class="sec"><p class="k mono" data-i18n="cur.k">Curaduría NEXAH</p><h3 data-i18n-html="cur.h">No es una playlist.<br><em>Es un recorrido.</em></h3><div class="cols" id="shows"></div></section>
   <section class="sec" id="nexah">
     <p class="k mono">02 / NEXAH</p>
-    <h3>Música. Cultura. <em>Tecnología.</em></h3>
-    <p><a href="cabina.html">Entrar a cabina →</a>  ·  <a href="credencial.html">Credenciales →</a>  ·  <a href="serie.html">Serie →</a></p>
+    <h3 data-i18n-html="s2.h">Música. Cultura. <em>Tecnología.</em></h3>
+    <p><a href="cabina.html">Cabina →</a> · <a href="credencial.html">Credencial →</a> · <a href="serie.html">Serie →</a></p>
   </section>
   <div class="dock">
     <button class="dplay" data-play data-play-label type="button">▶</button>
@@ -102,6 +107,7 @@
     <input class="vol" id="vol" type="range" min="0" max="1" step="0.01" value="0.9" />
   </div>
   <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/pisadores.js"></script>
   <script src="js/pack/p01.js"></script>
   <script src="js/pack/p02.js"></script>
