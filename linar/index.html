@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LINAR Lab · Calculadora solar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Oswald:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="rail">
+      <img class="logo" src="../media/partners/linar.png" alt="Grupo Linar Ferretería" />
+      <p class="tag">LAB · SOLAR</p>
+      <nav>
+        <button class="nav on" data-view="board">Tablero</button>
+        <button class="nav" data-view="calc">Calculadora</button>
+        <button class="nav" data-view="kits">Kits</button>
+        <button class="nav" data-view="quote">Presupuesto</button>
+      </nav>
+      <div class="rail-foot">
+        <b>Por Winter</b>
+        <span>Formosa, Argentina</span>
+        <span>Estimación de mostrador</span>
+      </div>
+    </aside>
+    <main>
+      <header class="top">
+        <div>
+          <h1 id="title">Tablero de obra</h1>
+          <p id="sub">Números en vivo según consumo, tarifa y kit.</p>
+        </div>
+        <div class="top-actions">
+          <span class="live">● CÁLCULO ACTIVO</span>
+          <button class="btn ghost" id="printBtn" type="button">Imprimir</button>
+        </div>
+      </header>
+      <section id="view-board" class="view on"></section>
+      <section id="view-calc" class="view"></section>
+      <section id="view-kits" class="view"></section>
+      <section id="view-quote" class="view"></section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
