@@ -37,10 +37,71 @@
           <button class="btn ghost" id="printBtn" type="button">Imprimir</button>
         </div>
       </header>
-      <section id="view-board" class="view on"></section>
-      <section id="view-calc" class="view"></section>
-      <section id="view-kits" class="view"></section>
-      <section id="view-quote" class="view"></section>
+      <section id="view-board" class="view on">
+        <div class="hero">
+          <div>
+            <p class="kicker">Propuesta activa</p>
+            <h2 id="kitName">—</h2>
+            <p id="kitLine" class="muted"></p>
+          </div>
+          <div class="hero-kpis">
+            <div><small>Potencia</small><b id="kpiKwp">—</b></div>
+            <div><small>Producción / año</small><b id="kpiKwh">—</b></div>
+            <div><small>Payback</small><b id="kpiPay">—</b></div>
+          </div>
+        </div>
+        <div class="metrics">
+          <article><label>Autoconsumo</label><b id="mSelf">—</b><span id="mCov">—</span></article>
+          <article><label>Ahorro año 1</label><b id="mSave">—</b><span>tarifa actual</span></article>
+          <article><label>CAPEX kit</label><b id="mCapex">—</b><span id="mPwp">—</span></article>
+          <article><label>Excedente</label><b id="mExp">—</b><span>inyección a red</span></article>
+        </div>
+        <div class="split">
+          <section class="panel">
+            <h3>Producción mensual · Formosa</h3>
+            <div id="bars"></div>
+          </section>
+          <section class="panel">
+            <h3>Balance energético</h3>
+            <table>
+              <tr><td>Consumo anual</td><td id="bCons">—</td></tr>
+              <tr><td>Generación FV</td><td id="bGen">—</td></tr>
+              <tr><td>Autoconsumo</td><td id="bSelf">—</td></tr>
+              <tr><td>Compra a red</td><td id="bGrid">—</td></tr>
+              <tr><td>kWh / kWp</td><td id="bSpec">—</td></tr>
+            </table>
+          </section>
+        </div>
+      </section>
+      <section id="view-calc" class="view">
+        <div class="split">
+          <form class="panel form" id="form">
+            <h3>Datos del cliente</h3>
+            <div class="grid2">
+              <label>Nombre / obra<input name="client" value="Taller Por Winter" /></label>
+              <label>Tipo<select name="type"><option>Casa</option><option selected>Comercio</option><option>Taller</option><option>Galpón</option></select></label>
+              <label>Consumo mensual (kWh)<input name="kwh" type="number" min="50" step="10" value="900" /></label>
+              <label>Tarifa (ARS / kWh)<input name="tariff" type="number" min="1" step="1" value="140" /></label>
+              <label>Inyección (ARS / kWh)<input name="exportT" type="number" min="0" step="1" value="45" /></label>
+              <label>Techo disponible (m²)<input name="roof" type="number" min="8" step="1" value="48" /></label>
+              <label>Pérdidas sistema (%)<input name="loss" type="number" min="8" max="25" step="1" value="14" /></label>
+              <label>Kit<select name="kit"></select></label>
+            </div>
+            <p class="note">Recurso solar DEMO Formosa. Cotización de mostrador, no reemplaza ingeniería.</p>
+          </form>
+          <aside class="panel"><h3>Resultado</h3><ul class="stack" id="liveStack"></ul></aside>
+        </div>
+      </section>
+      <section id="view-kits" class="view"><div class="kits" id="kitGrid"></div></section>
+      <section id="view-quote" class="view">
+        <section class="panel">
+          <h3>Presupuesto de kit</h3>
+          <p class="muted" id="qHead"></p>
+          <table id="bom"></table>
+          <div class="quote-foot"><div><small>Total sugerido</small><b id="qTotal">—</b></div>
+          <button class="btn" id="saveBtn" type="button">Guardar en este equipo</button></div>
+        </section>
+      </section>
     </main>
   </div>
   <script src="app.js"></script>
