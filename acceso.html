@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXAH · Credenciales de aire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Space+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
+  <style>
+    body{background:#07080c;color:#F4F7FB}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:28px}
+    .card{border:1px solid #ffffff18;background:linear-gradient(180deg,#10131b,#0a0c12);padding:18px;min-height:210px;position:relative;overflow:hidden}
+    .card:before{content:"";position:absolute;inset:auto -20% -40% -20%;height:90px;background:radial-gradient(circle,#1E7CFF33,transparent 70%)}
+    .card small{font-family:"IBM Plex Mono",monospace;letter-spacing:.16em;color:#22F0A0;font-size:10px}
+    .card h3{font-family:Syne,sans-serif;font-size:28px;margin:10px 0 4px}
+    .card p{color:#9aa0ae;margin:0;font-size:14px}
+    .id{position:absolute;right:14px;top:14px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:#62f6ff}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html"><span class="nx">NX</span><span><b>NEXAH</b><small>CREDENCIAL</small></span></a>
+    <nav class="mono"><a href="index.html">Aire</a><a href="serie.html">Serie</a><a href="cabina.html">Cabina</a></nav>
+  </header>
+  <div class="wrap">
+    <p class="mono" style="letter-spacing:.18em;color:#ff2e91">STAFF · FORMOSA · 2026</p>
+    <h1 style="font-family:Syne,sans-serif;font-size:clamp(36px,7vw,72px);margin:8px 0">Credenciales<br>de aire.</h1>
+    <p style="max-width:520px;color:#9aa0ae">Serie operativa. Cada agente tiene mesa, rol y pase. Sin credencial no hay consola.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+  <script src="js/data.js"></script>
+  <script>
+    const box = document.getElementById("grid");
+    const list = (window.NEXAH && NEXAH.agents) || [];
+    box.innerHTML = list.map((a,i) =>
+      '<article class="card"><span class="id">NX-' + String(i+1).padStart(2,"0") + '</span>' +
+      '<small>' + a.desk + '</small><h3>' + a.name + '</h3><p>' + a.who + ' · ' + a.job + '</p></article>'
+    ).join("");
+  </script>
+</body>
+</html>

@@ -10,6 +10,8 @@ window.NEXAH = {
     "https://ice4.somafm.com/thetrip-128-mp3"
   ],
   streamName: "NEXAH 01 · Alt / Rock / House",
+  youtube: "https://www.youtube.com/@somosnexah",
+  youtubeVideo: "BbXKzd7cZkI",
   pinchMinMs: 300000,
   pinchMaxMs: 540000,
   pisadores: [

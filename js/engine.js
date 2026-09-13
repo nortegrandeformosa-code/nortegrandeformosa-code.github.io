@@ -88,9 +88,27 @@
     if (keys.length) return pack[keys[Math.floor(Math.random() * keys.length)]];
     return FILES["PIS_OFF_001.mp3"];
   }
-  function playClip(src) {
+  function speakLine(text) {
     return new Promise((resolve) => {
-      if (!src) return resolve();
+      const line = text || "NEXAH Radio.";
+      if (!window.speechSynthesis) return resolve();
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+      const u = new SpeechSynthesisUtterance(line);
+      u.lang = "es-AR";
+      u.rate = 1.02;
+      u.pitch = 0.9;
+      let done = false;
+      const finish = () => { if (done) return; done = true; resolve(); };
+      u.onend = finish;
+      u.onerror = finish;
+      setTimeout(finish, 7000);
+      window.speechSynthesis.speak(u);
+    });
+  }
+  function playClip(src, label) {
+    return new Promise((resolve) => {
+      const fallback = () => speakLine(label).then(resolve);
+      if (!src) return fallback();
       if (engine.voice) { try { engine.voice.pause(); } catch (e) {} }
       const a = new Audio();
       a.preload = "auto";
@@ -99,14 +117,14 @@
       let done = false;
       const finish = () => { if (done) return; done = true; resolve(); };
       a.onended = finish;
-      a.onerror = () => setTimeout(finish, 400);
+      a.onerror = () => fallback();
       const safety = setTimeout(finish, 14000);
       a.play().then(() => {
         if (a.duration && isFinite(a.duration)) {
           clearTimeout(safety);
           setTimeout(finish, (a.duration * 1000) + 80);
         }
-      }).catch(() => { clearTimeout(safety); finish(); });
+      }).catch(() => { clearTimeout(safety); fallback(); });
     });
   }
   function scheduleDrops(wait) {
@@ -128,7 +146,7 @@
     setText("dropLine", LABELS[key] || "NEXAH");
     setLayer("id", true);
     duck(true);
-    await playClip(src);
+    await playClip(src, LABELS[key] || D.slogan);
     duck(false);
     setLayer("id", false);
     document.body.classList.remove("on-drop");
