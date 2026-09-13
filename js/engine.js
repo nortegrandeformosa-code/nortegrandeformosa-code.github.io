@@ -20,15 +20,15 @@
     "PIS_OFF_002.mp3": "Estás escuchando Nexa Radio.",
     "PIS_OFF_003.mp3": "Una señal diferente. Una nueva forma de hacer radio.",
     "PIS_OFF_004.mp3": "Desde Formosa para cualquier lugar donde estés.",
-    "PIS_OFF_005.mp3": "Staff de agentes inteligentes.",
-    "MUSICA_NEXA.mp3": "Nexa Radio. Música para oídos inteligentes.",
-    "NEXA_RADIO.mp3": "Nexa Radio.",
-    "FULL_CORTO.mp3": "NEXAH. Señal completa."
+    "PIS_OFF_005.mp3": "Staff de agentes inteligentes. Siempre en movimiento.",
+    "MUSICA_NEXA.mp3": "La radio está siempre en movimiento.",
+    "NEXA_RADIO.mp3": "Estás escuchando Nexa Radio.",
+    "FULL_CORTO.mp3": "Una señal diferente. Una nueva forma de hacer radio."
   };
   const MAP = {
     id: "PIS_OFF_002.mp3", slogan: "PIS_OFF_001.mp3", formosa: "PIS_OFF_004.mp3",
-    staff: "PIS_OFF_005.mp3", escena: "PIS_OFF_003.mp3", musica: "MUSICA_NEXA.mp3",
-    nexa: "NEXA_RADIO.mp3", full: "FULL_CORTO.mp3"
+    staff: "PIS_OFF_005.mp3", escena: "PIS_OFF_003.mp3", musica: "PIS_OFF_001.mp3",
+    nexa: "PIS_OFF_002.mp3", full: "PIS_OFF_003.mp3"
   };
   function $(id) { return document.getElementById(id); }
   function nowAR() {
@@ -155,7 +155,7 @@
     if (engine.playing) scheduleDrops();
   }
   function nextDropKind() {
-    const wheel = ["id", "slogan", "formosa", "escena", "staff", "nexa", "musica"];
+    const wheel = ["id", "slogan", "formosa", "escena", "staff"];
     return wheel[engine.dropN % wheel.length];
   }
   async function connectBed() {
