@@ -46,7 +46,7 @@ img { display: block; max-width: 100%; }
   display: grid;
   grid-template-columns: 18px 1.15fr .85fr;
   min-height: 0;
-  padding-bottom: 118px;
+  padding-bottom: 12px;
 }
 .gutter { border-right: 1px solid #ffffff14; }
 .hero { padding: 28px 48px 20px; }
@@ -73,7 +73,7 @@ h1 .mag { color: var(--mag); }
 }
 .note { margin-top: 12px; color: var(--mut); font-size: 13px; }
 .cyan {
-  background: var(--neon); color: #111; padding: 18px 18px 16px; margin: 14px 14px 118px 0;
+  background: var(--neon); color: #111; padding: 18px 18px 16px; margin: 14px 14px 14px 0;
   display: flex; flex-direction: column; min-height: 0;
 }
 .cyan-top { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; }
@@ -92,16 +92,16 @@ h1 .mag { color: var(--mag); }
 }
 .cyan .sub { font-size: 11px; letter-spacing: .14em; margin: 8px 0 0; }
 .adrail {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  z-index: 8;
+  position: sticky;
+  bottom: 76px;
+  z-index: 45;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  height: 118px;
-  border-top: 1px solid #62f6ff66;
-  background: linear-gradient(180deg, #0a0814f0, #05040af8);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 -24px 60px #0008;
+  height: 112px;
+  border-top: 1px solid #62f6ff88;
+  border-bottom: 1px solid #62f6ff33;
+  background: #f4f1fb;
+  box-shadow: 0 -16px 40px #0006;
 }
 .adslot {
   display: grid;
@@ -126,9 +126,11 @@ h1 .mag { color: var(--mag); }
 }
 .adslot:hover:after { animation: sheen .9s ease; }
 @keyframes sheen { to { transform: translateX(140%); } }
-.adslot img { height: 52px; width: auto; max-width: 92%; object-fit: contain; }
+.adslot img { height: 58px; width: auto; max-width: 94%; object-fit: contain; }
 .adslot small { color: #9a93ab; font-size: 9px; letter-spacing: .16em; }
 .adslot.plate { background: #fff; }
+.adrail .adslot { background: #fff; }
+.adrail .adslot small { color: #333; }
 .adslot.plate small { color: #003a70; }
 .adslot.ngc { background: #fff; }
 .adslot.ngc img { height: 58px; max-width: 96%; }
@@ -167,7 +169,7 @@ h1 .mag { color: var(--mag); }
   .top nav { display: none; }
   h1 { font-size: 58px; }
   #vu { width: 90px; }
-  .adrail { position: relative; height: auto; grid-template-columns: 1fr 1fr; }
+  .adrail { position: sticky; bottom: 76px; height: auto; grid-template-columns: 1fr 1fr; }
   .adslot { min-height: 88px; border-bottom: 1px solid #62f6ff33; }
   .airframe { min-height: auto; }
 }
