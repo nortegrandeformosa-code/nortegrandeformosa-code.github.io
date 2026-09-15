@@ -1,2 +1,1 @@
-# nortegrandeformosa-code.github.io
-NEXAH Radio — aire público
+NEXAH Radio — aire público. Subir index.html, proyecto.html y js/i18n.js a Ferozo (nexah.com.ar) para que quede en producción.
