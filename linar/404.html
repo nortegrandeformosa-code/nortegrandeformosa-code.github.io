@@ -4,33 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
-    <title>Linar Solar Lab</title>
+    <title>Linar Solar Lab · Grupo Linar SAS</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <script>
-      window.__LINAR_DESKTOP__ = true;
-      (function () {
-        function ping() {
-          fetch("/__ping", { cache: "no-store" }).catch(function () {});
-        }
-        ping();
-        setInterval(ping, 4000);
-        window.addEventListener("error", function (e) {
-          var el = document.getElementById("boot-err");
-          if (!el) return;
-          el.hidden = false;
-          el.textContent = "Error al cargar: " + (e.message || "desconocido");
-        });
-      })();
-    </script>
     <style>
       html, body, #root { min-height: 100%; margin: 0; background: #111; color: #f4f7fb; font-family: Segoe UI, system-ui, sans-serif; }
-      #boot-err { padding: 16px; background: #c43020; }
     </style>
     <script type="module" crossorigin src="./assets/index-D4ZPBgJy.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DOBVk4Q5.css">
   </head>
   <body>
-    <div id="boot-err" hidden></div>
     <div id="root"></div>
   </body>
 </html>
