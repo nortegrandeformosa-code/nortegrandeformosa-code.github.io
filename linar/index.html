@@ -1,18 +1,134 @@
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
-    <title>Linar Solar Lab · Grupo Linar SAS</title>
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <style>
-      html, body, #root { min-height: 100%; margin: 0; background: #111; color: #f4f7fb; font-family: Segoe UI, system-ui, sans-serif; }
-    </style>
-    <script type="module" crossorigin src="./assets/index-D4ZPBgJy.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DOBVk4Q5.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linar Solar Lab · Grupo Linar SAS</title>
+  <meta name="description" content="Software propio de diseño y simulación BIPV. Cargá la vivienda, pintá tejas, ves el 3D, sacás el informe técnico. No es un presupuesto." />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="canonical" href="https://nortegrandeformosa-code.github.io/linar/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:title" content="Linar Solar Lab · Grupo Linar SAS" />
+  <meta property="og:description" content="Diseño BIPV: vivienda, teja, 3D e informe técnico." />
+  <meta property="og:url" content="https://nortegrandeformosa-code.github.io/linar/" />
+  <meta property="og:image" content="https://nortegrandeformosa-code.github.io/linar/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Linar Solar Lab · Grupo Linar SAS" />
+  <meta name="twitter:description" content="Diseño BIPV: vivienda, teja, 3D e informe técnico." />
+  <meta name="twitter:image" content="https://nortegrandeformosa-code.github.io/linar/og.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #111111;
+      --rail: #1a1a1a;
+      --fg: #f4f7fb;
+      --muted: #9aa0a6;
+      --red: #c43020;
+      --line: rgba(255,255,255,.08);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--fg); font-family: "IBM Plex Sans", system-ui, sans-serif; }
+    a { color: inherit; }
+    .wrap { min-height: 100dvh; display: flex; flex-direction: column; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; border-bottom: 1px solid var(--line);
+    }
+    header img { height: 36px; width: auto; }
+    .lab {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+    }
+    .hero {
+      flex: 1; display: grid; grid-template-columns: 1.05fr .95fr; min-height: 0;
+    }
+    .copy { padding: 56px 40px 40px; display: flex; flex-direction: column; justify-content: center; gap: 22px; max-width: 640px; }
+    .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
+    h1 { margin: 0; font-size: clamp(40px, 6vw, 68px); line-height: .95; letter-spacing: -.03em; font-weight: 700; }
+    h1 span { display: block; color: #fff; }
+    .lead { margin: 0; font-size: 17px; line-height: 1.45; color: var(--muted); max-width: 42ch; }
+    .ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: 0 22px; border-radius: 4px; font-weight: 600; font-size: 15px;
+      text-decoration: none; border: 1px solid transparent;
+    }
+    .btn-p { background: var(--red); color: #fff; }
+    .btn-p:hover { filter: brightness(1.08); }
+    .btn-g { border-color: var(--line); color: var(--fg); }
+    .btn-g:hover { background: #1c1c1c; }
+    .shot {
+      position: relative; overflow: hidden; background: #0a0a0a;
+      border-left: 1px solid var(--line);
+    }
+    .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .shot figcaption {
+      position: absolute; left: 16px; bottom: 16px;
+      font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .12em;
+      text-transform: uppercase; color: #e8e8e8; background: rgba(0,0,0,.45); padding: 6px 10px;
+    }
+    .specs {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .spec { padding: 22px 24px; border-right: 1px solid var(--line); }
+    .spec:last-child { border-right: 0; }
+    .spec b { display: block; font-size: 13px; margin-bottom: 6px; }
+    .spec span { color: var(--muted); font-size: 13px; line-height: 1.4; }
+    footer {
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 14px 28px; border-top: 1px solid var(--line);
+      font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--fg); }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .copy { padding: 36px 22px 28px; }
+      .shot { min-height: 280px; border-left: 0; border-top: 1px solid var(--line); }
+      .specs { grid-template-columns: 1fr 1fr; }
+      .spec:nth-child(2n) { border-right: 0; }
+      .spec { border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="./linar-wordmark.png" alt="Grupo Linar SAS" />
+      <div class="lab">Solar Lab · BIPV</div>
+    </header>
+    <section class="hero">
+      <div class="copy">
+        <div class="kicker">Grupo Linar SAS · software propio</div>
+        <h1>Linar<br><span>Solar Lab</span></h1>
+        <p class="lead">Diseño y simulación de tejas BIPV. Cargá la vivienda, pintá la cubierta, ves el 3D y sacás el informe técnico. No es un presupuesto.</p>
+        <div class="ctas">
+          <a class="btn btn-p" href="./app/">Entrar al laboratorio</a>
+          <a class="btn btn-g" href="#specs">Cómo funciona</a>
+        </div>
+      </div>
+      <figure class="shot">
+        <img src="./hero.jpg" alt="Prototipo a escala 3 × 2 m con tejas BIPV CIGS" />
+        <figcaption>Prototipo 3 × 2 m · teja CIGS</figcaption>
+      </figure>
+    </section>
+    <section class="specs" id="specs">
+      <div class="spec"><b>Teja BIPV</b><span>CIGS Sangsolar 32 W. Ficha editable: potencia, tensión, corriente, medidas.</span></div>
+      <div class="spec"><b>Vivienda</b><span>Largo, ancho, orientación, pendiente. Empaque de tejas por superficie útil.</span></div>
+      <div class="spec"><b>Modelo 3D</b><span>La casa que construís se ve en 3D. Exportá PNG y GLB.</span></div>
+      <div class="spec"><b>Informe</b><span>Irradiación, pérdidas, generación mensual y PDF técnico.</span></div>
+    </section>
+    <footer>
+      <span>GRUPO LINAR SAS · Formosa, Argentina</span>
+      <a href="https://nexah.com.ar" target="_blank" rel="noopener">powered nexah.com.ar | 2026</a>
+    </footer>
+  </div>
+</body>
 </html>
