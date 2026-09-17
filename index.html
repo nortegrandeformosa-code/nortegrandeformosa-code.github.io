@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
+<script>
+(function(){
+  var h=location.hostname.toLowerCase();
+  if(h==="linar.nexah.com.ar"||h==="www.linar.nexah.com.ar"){
+    if(location.pathname==="/"||location.pathname===""||location.pathname==="/index.html"){
+      location.replace("/linar/"+location.search+location.hash);
+    }
+  }
+})();
+</script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NEXAH RADIO · Música, cultura y tecnología</title>
